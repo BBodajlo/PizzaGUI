@@ -63,6 +63,7 @@ public class StoreOrderController {
     public void goToMainMenu(MouseEvent event){
 
         Scene scene = PizzaMainApplication.getMainScene();
+        PizzaMainApplication.getmainView().setTitle("Pizza Placer");
         PizzaMainApplication.getmainView().setScene(scene);
         PizzaMainApplication.getmainView().show();
 

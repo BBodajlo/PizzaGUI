@@ -113,7 +113,7 @@
                         </HBox>
                         <ListView fx:id="toppingsList" onEditStart="#initialize" prefHeight="275.0" prefWidth="500.0">
                             <VBox.margin>
-                                <Insets right="20.0" top="25.0" />
+                                <Insets left="30.0" right="20.0" top="25.0" />
                             </VBox.margin>
                         </ListView>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -158,7 +158,7 @@
                                 </VBox>
                                 <ListView fx:id="toppingsChosen" prefHeight="193.0" prefWidth="403.0">
                                     <HBox.margin>
-                                        <Insets bottom="10.0" right="50.0" />
+                                        <Insets right="50.0" top="10.0" />
                                     </HBox.margin>
                                 </ListView>
                             </children>
@@ -179,7 +179,7 @@
     <bottom>
         <Button fx:id="menuButton" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#backToMenu" text="Main Menu" BorderPane.alignment="CENTER">
             <font>
-                <Font name="Book Antiqua" size="14.0" />
+                <Font name="Book Antiqua" size="24.0" />
             </font>
             <BorderPane.margin>
                 <Insets bottom="10.0" />

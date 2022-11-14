@@ -243,7 +243,7 @@ public class ChicagoPizzaController {
     public void backToMenu(MouseEvent event)
     {
         Scene scene = PizzaMainApplication.getMainScene();
-        PizzaMainApplication.getmainView().setTitle("Current Order");
+        PizzaMainApplication.getmainView().setTitle("Pizza Placer");
         PizzaMainApplication.getmainView().setScene(scene);
         PizzaMainApplication.getmainView().show();
 

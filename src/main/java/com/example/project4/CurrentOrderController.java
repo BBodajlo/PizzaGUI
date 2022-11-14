@@ -47,9 +47,15 @@ public class CurrentOrderController {
 
 @FXML
     public void removePizza(MouseEvent event) throws IOException{
-        Pizza pizzaToRemove = PizzaMainController.getCurrentOrder().getPizzaList().get(listOfOrder.getSelectionModel().getSelectedIndex());
-        listOfOrder.getItems().remove(listOfOrder.getSelectionModel().getSelectedIndex());
-        PizzaMainController.getCurrentOrder().remove(pizzaToRemove);
+        try {
+            Pizza pizzaToRemove = PizzaMainController.getCurrentOrder().getPizzaList().get(listOfOrder.getSelectionModel().getSelectedIndex());
+            listOfOrder.getItems().remove(listOfOrder.getSelectionModel().getSelectedIndex());
+            PizzaMainController.getCurrentOrder().remove(pizzaToRemove);
+        }
+        catch(NullPointerException | IndexOutOfBoundsException e)
+        {
+            return;
+        }
     //listOfOrder.getItems().add(currentOrder.getPizzaList().get(0));
     //toppingToRemove = toppingsChosen.getSelectionModel().getSelectedItem();
 
@@ -89,6 +95,7 @@ public class CurrentOrderController {
     public void goToMainMenu(ActionEvent event){
 
         Scene scene = PizzaMainApplication.getMainScene();
+        PizzaMainApplication.getmainView().setTitle("Pizza Placer");
         PizzaMainApplication.getmainView().setScene(scene);
         PizzaMainApplication.getmainView().show();
 
