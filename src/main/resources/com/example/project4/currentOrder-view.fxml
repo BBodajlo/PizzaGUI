@@ -62,4 +62,14 @@
          </children>
       </GridPane>
    </center>
+   <bottom>
+      <Button fx:id="mainMenuButton" mnemonicParsing="false" onAction="#goToMainMenu" text="Main Menu" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Book Antiqua" size="24.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>

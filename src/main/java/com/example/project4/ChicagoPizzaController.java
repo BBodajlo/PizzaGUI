@@ -2,6 +2,7 @@ package com.example.project4;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -232,14 +233,18 @@ public class ChicagoPizzaController {
     }
 
     public void addOrder(MouseEvent event) throws IOException{
-        CurrentOrderController.getCurrentOrder().add(currentPizza);
+
+        PizzaMainController.getCurrentOrder().add(currentPizza);
+
         //System.out.println(CurrentOrderController.getCurrentOrder().toString());
     }
 
 
     public void backToMenu(MouseEvent event)
     {
-        PizzaMainApplication.getChicagoView().hide();
+        Scene scene = PizzaMainApplication.getMainScene();
+        PizzaMainApplication.getmainView().setTitle("Current Order");
+        PizzaMainApplication.getmainView().setScene(scene);
         PizzaMainApplication.getmainView().show();
 
     }

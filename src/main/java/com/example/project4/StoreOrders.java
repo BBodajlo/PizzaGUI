@@ -104,4 +104,8 @@ public class StoreOrders implements Customizable{
             orderList.get(i).setOrderNumber(orderList.get(i).getOrderNumber()-1);
         }
     }
+
+    public ArrayList<Order> getOrderList(){
+        return orderList;
+    }
 }

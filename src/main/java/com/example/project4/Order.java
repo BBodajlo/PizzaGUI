@@ -16,6 +16,7 @@ public class Order implements Customizable{
 
     private String orderMessage;
 
+
     /**
      * Creates an order by initializing the list of pizzas and an order number
      * @param orderNum Comes from the StoreOrder class which creates unique numbers for the next
@@ -38,17 +39,20 @@ public class Order implements Customizable{
     public String toString()
     {
         orderMessage = "";
-        for(Pizza p : PizzaList)
-        {
-            orderMessage+= String.format("%s: %s, %s, Toppings: ",p.getClass().getSimpleName(),
-                    p.getCrust(),
-                    p.getSize());
-            for(Topping t : p.getToppings())
-            {
-                orderMessage += t + ", ";
+        if(!getPizzaList().isEmpty()) {
+            orderMessage += "Order #" + orderNumber + "\n";
+            for (Pizza p : PizzaList) {
+                orderMessage += String.format("%s: %s, %s, Toppings: ", p.getClass().getSimpleName(),
+                        p.getCrust(),
+                        p.getSize());
+                for (Topping t : p.getToppings()) {
+                    orderMessage += t + ", ";
+                }
+                orderMessage += "Price: " + p.price() + "\n";
             }
-            orderMessage += "Price: " + p.price() + "\n";
+            orderMessage += "Total: " + this.getTotal() + "\n";
         }
+
         return orderMessage;
     }
 
@@ -114,4 +118,22 @@ public class Order implements Customizable{
     {
         return PizzaList;
     }
+
+    public boolean isEmpty()
+    {
+        return PizzaList.isEmpty();
+    }
+
+    public double getTotal()
+    {
+        double total = 0;
+        for(Pizza p: PizzaList)
+        {
+            total += p.price();
+        }
+        String price = String.format("%.02f",total);
+        total = Double.parseDouble(price);
+        return total;
+    }
+
 }

@@ -52,6 +52,21 @@ public abstract class Pizza implements Customizable<Topping> {
         return false;
     }
 
+    public String toString()
+    {
+        String pizza = "";
+        pizza+= String.format("%s: %s, %s, Toppings: ",this.getClass().getSimpleName(),
+                this.getCrust(),
+                this.getSize());
+        for(Topping t : this.getToppings())
+        {
+            pizza += t + ", ";
+        }
+        pizza += "Price: " + this.price() + "\n";
+
+        return pizza;
+    }
+
     /**
      * Sets the crust of the current pizza.
      * Used by PizzaFactory when creating a pizza type
