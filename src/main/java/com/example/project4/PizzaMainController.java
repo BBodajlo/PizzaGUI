@@ -1,6 +1,7 @@
 package com.example.project4;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -47,6 +48,15 @@ public class PizzaMainController {
     public void OpenChicagoPage(MouseEvent event) throws IOException{
         PizzaMainApplication.getmainView().hide();
         PizzaMainApplication.getChicagoView().show();
+
+
+
+    }
+
+    public void OpenOrderPage(MouseEvent event) throws IOException{
+        PizzaMainApplication.getmainView().hide();
+        PizzaMainApplication.getCurrentOrderView().show();
+
 
 
 

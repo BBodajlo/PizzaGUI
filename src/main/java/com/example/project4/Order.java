@@ -52,6 +52,7 @@ public class Order implements Customizable{
         return orderMessage;
     }
 
+
     /**
      * Adds a pizza object to the current order
      * @param obj Any instance of a pizza object
@@ -107,5 +108,10 @@ public class Order implements Customizable{
      */
     public int getOrderNumber() {
         return orderNumber;
+    }
+
+    public ArrayList<Pizza> getPizzaList()
+    {
+        return PizzaList;
     }
 }

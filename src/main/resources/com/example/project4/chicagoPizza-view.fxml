@@ -168,6 +168,11 @@
                   </HBox>
                </children>
             </VBox>
+            <Button fx:id="chicagoPlaceOrder" mnemonicParsing="false" onMouseClicked="#addOrder" text="Add To Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Book Antiqua" size="24.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
    </center>

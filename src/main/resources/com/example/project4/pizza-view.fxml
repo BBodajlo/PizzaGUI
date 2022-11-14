@@ -78,7 +78,7 @@
                   <Insets top="20.0" />
                </padding>
             </Label>
-            <Button fx:id="CurrentOrderButton" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="CurrentOrderButton" mnemonicParsing="false" onMouseClicked="#OpenOrderPage" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>

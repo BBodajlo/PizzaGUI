@@ -15,6 +15,7 @@ import java.util.Iterator;
 public class ChicagoPizzaController {
 
 
+
     @FXML
     private ComboBox<PizzaType> typeComboBox;
 
@@ -50,11 +51,16 @@ public class ChicagoPizzaController {
     @FXML
     private ToggleGroup sizeGroup;
 
+    @FXML
+    private Button chicagoPlaceOrder;
+
     private File file;
     Image pizzaPicture;
 
     private Pizza currentPizza;
     private PizzaFactory chicagoPizzaBuilder;
+
+
 
     public void initialize(){
         System.out.println("here");
@@ -72,6 +78,7 @@ public class ChicagoPizzaController {
         updatePrice();
         System.out.println(currentPizza.getToppings().size());
         handleToppingsList();
+        StoreOrderController.initializeStoreOrder();
         //
 
 
@@ -222,6 +229,11 @@ public class ChicagoPizzaController {
     {
         priceLabel.setText(String.valueOf(currentPizza.price()));
 
+    }
+
+    public void addOrder(MouseEvent event) throws IOException{
+        CurrentOrderController.getCurrentOrder().add(currentPizza);
+        //System.out.println(CurrentOrderController.getCurrentOrder().toString());
     }
 
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class PizzaMainApplication extends Application {
 
-    private static Stage mainView, chicagoView, newYorkView;
+    private static Stage mainView, chicagoView, newYorkView, currentOrderView;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -34,8 +34,15 @@ public class PizzaMainApplication extends Application {
         fxmlLoader = new FXMLLoader(PizzaMainApplication.class.getResource(
                 "newYorkPizza-view.fxml"));
         Scene sceneNewYork = new Scene(fxmlLoader.load(), 1000, 1000);
-        newYorkView.setTitle("Chicago Picker");
+        newYorkView.setTitle("New York Picker");
         newYorkView.setScene(sceneNewYork);
+
+        currentOrderView = new Stage();
+        fxmlLoader = new FXMLLoader(PizzaMainApplication.class.getResource(
+                "currentOrder-view.fxml"));
+        Scene sceneCurrentOrder = new Scene(fxmlLoader.load(), 1000, 1000);
+        currentOrderView.setTitle("Current Order");
+        currentOrderView.setScene(sceneCurrentOrder);
 
     }
 
@@ -52,6 +59,11 @@ public class PizzaMainApplication extends Application {
     public static Stage getNewYorkView()
     {
         return newYorkView;
+    }
+
+    public static Stage getCurrentOrderView()
+    {
+        return currentOrderView;
     }
 
     public static void main(String[] args) {
