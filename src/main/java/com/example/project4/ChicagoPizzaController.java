@@ -57,7 +57,7 @@ public class ChicagoPizzaController {
     private Button chicagoPlaceOrder;
 
     private File file;
-    Image pizzaPicture;
+    private Image pizzaPicture;
 
     private Pizza currentPizza;
     private PizzaFactory chicagoPizzaBuilder;
@@ -65,6 +65,7 @@ public class ChicagoPizzaController {
 
 
     public void initialize(){
+
         System.out.println("here");
         typeComboBox.setItems(FXCollections.observableArrayList(PizzaType.values()));
         typeComboBox.getSelectionModel().select(0);

@@ -16,6 +16,7 @@ public class Order implements Customizable{
 
     private String orderMessage;
 
+    private static final double SALES_TAX = .06625;
 
     /**
      * Creates an order by initializing the list of pizzas and an order number
@@ -50,6 +51,7 @@ public class Order implements Customizable{
                 }
                 orderMessage += "Price: " + p.price() + "\n";
             }
+            orderMessage += "Sales Tax: " + this.getSalesTax() + "\n";
             orderMessage += "Total: " + this.getTotal() + "\n";
         }
 
@@ -124,13 +126,27 @@ public class Order implements Customizable{
         return PizzaList.isEmpty();
     }
 
-    public double getTotal()
+    public double getSalesTax()
+    {
+        double tax = this.getTotalWithoutTax()*SALES_TAX;
+        String price = String.format("%.02f",tax);
+        tax = Double.parseDouble(price);
+        return tax;
+    }
+    private double getTotalWithoutTax()
     {
         double total = 0;
         for(Pizza p: PizzaList)
         {
             total += p.price();
         }
+        String price = String.format("%.02f",total);
+        total = Double.parseDouble(price);
+        return total;
+    }
+    public double getTotal()
+    {
+        double total = getSalesTax() + getTotalWithoutTax();
         String price = String.format("%.02f",total);
         total = Double.parseDouble(price);
         return total;

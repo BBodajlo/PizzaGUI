@@ -43,7 +43,6 @@ public class PizzaMainController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-   // NewYorkPizzaController newYorkPizzaController;
 
     @FXML
     public void initialize() throws IOException {
@@ -73,7 +72,6 @@ public class PizzaMainController {
     public void OpenNYPage(MouseEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("newYorkPizza-view.fxml")));
         root = loader.load();
-        //newYorkPizzaController = loader.getController();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setTitle("New York Pizza");
@@ -89,6 +87,7 @@ public class PizzaMainController {
 
         CurrentOrderController currentOrderController = loader.getController();
         currentOrderController.setList(currentOrder);
+        currentOrderController.setPriceAndTax();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setTitle("Current Order");

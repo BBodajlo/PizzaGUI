@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -33,10 +30,14 @@ public class CurrentOrderController {
     @FXML
     private Button placeOrderButton;
 
+    @FXML
     private Button mainMenuButton;
 
+    @FXML
+    private TextField taxBox;
 
-
+    @FXML
+    private TextField priceBox;
 
     public void initialize()
     {
@@ -54,6 +55,7 @@ public class CurrentOrderController {
             Pizza pizzaToRemove = PizzaMainController.getCurrentOrder().getPizzaList().get(listOfOrder.getSelectionModel().getSelectedIndex());
             listOfOrder.getItems().remove(listOfOrder.getSelectionModel().getSelectedIndex());
             PizzaMainController.getCurrentOrder().remove(pizzaToRemove);
+            setPriceAndTax();
         }
         catch(NullPointerException | IndexOutOfBoundsException e)
         {
@@ -72,6 +74,7 @@ public class CurrentOrderController {
         if(!PizzaMainController.getCurrentOrder().isEmpty()) {
             PizzaMainController.clearOrder();
             listOfOrder.getItems().clear();
+            setPriceAndTax();
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Order is Empty!",
@@ -92,6 +95,7 @@ public class CurrentOrderController {
                 PizzaMainController.getStoredOrder().add(PizzaMainController.getCurrentOrder());
                 PizzaMainController.clearOrder();
                 listOfOrder.getItems().clear();
+                setPriceAndTax();
             }
             else{
                 alert.close();
@@ -120,7 +124,11 @@ public class CurrentOrderController {
         //listOfOrder.setItems((FXCollections.observableArrayList(order.toString())));
     }
 
-
+    public void setPriceAndTax()
+    {
+        taxBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getSalesTax()));
+        priceBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getTotal()));
+    }
 
     public void goToMainMenu(ActionEvent event){
 
@@ -130,6 +138,8 @@ public class CurrentOrderController {
         PizzaMainApplication.getmainView().show();
 
     }
+
+
 
 
 }

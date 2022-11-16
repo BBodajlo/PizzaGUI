@@ -57,7 +57,7 @@ public class NewYorkPizzaController {
     private Button newYorkPlaceOrder;
 
     private File file;
-    Image pizzaPicture;
+    private Image pizzaPicture;
 
     private Pizza currentPizza;
     private PizzaFactory newYorkPizzaBuilder;

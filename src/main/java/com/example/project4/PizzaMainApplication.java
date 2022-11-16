@@ -47,6 +47,7 @@ public class PizzaMainApplication extends Application {
 
     }
 
+
     public static Stage getmainView()
     {
         return  mainView;
@@ -70,6 +71,8 @@ public class PizzaMainApplication extends Application {
     public static Scene getMainScene(){
         return mainScene;
     }
+
+
 
     public static void main(String[] args) {
         launch();
