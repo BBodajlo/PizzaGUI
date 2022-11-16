@@ -151,7 +151,6 @@ public class PizzaMainController {
 
     /**
      * Clear the order.
-     * @return the cleared orders
      */
     public static void clearOrder()
     {
