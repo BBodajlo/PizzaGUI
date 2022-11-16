@@ -15,6 +15,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+/**
+ * This class controls the graphical user interface of the Current Order Menu.
+ * Displaying all the confirmed pizza orders in a chronological order; along with the
+ * subtotal, tax and price. Allowing the user to remove, clear, or place the order.
+ * When an order is placed it is inserted into Stored Orders.
+ * @author Blake Bodajlo, Stanley Jiang
+ */
 public class CurrentOrderController {
 
 
@@ -42,6 +49,9 @@ public class CurrentOrderController {
     @FXML
     private TextField subtotalBox;
 
+    /**
+     * Initialize the Current Order Menu.
+     */
     public void initialize()
     {
 
@@ -52,6 +62,11 @@ public class CurrentOrderController {
 
     }
 
+    /**
+     * Removes a pizza from the user's order when the user selects on an item from the
+     * current order list.
+     * @param event When the user clicks on the "Remove Item" button.
+     */
 @FXML
     public void removePizza(MouseEvent event) throws IOException{
         try {
@@ -72,6 +87,10 @@ public class CurrentOrderController {
 
     }
 
+    /**
+     * Clears all the current orders from the orders lists.
+     * @param event When the user clicks on the "Clear Order" button.
+     */
     @FXML
     public void clearOrder(MouseEvent event) throws IOException{
         if(!PizzaMainController.getCurrentOrder().isEmpty()) {
@@ -86,6 +105,12 @@ public class CurrentOrderController {
         }
 
     }
+    /**
+     * Allows the user to confirm and place their desired orders. When the
+     * user clicked on place order button, an alert button will pop up asking if the user
+     * would like to confirm their order. Confirmed orders will be inserted into Stored orders.
+     * @param event When the user clicks on the "Place Order" button.
+     */
     @FXML
     public void placeOrder(MouseEvent event) throws IOException{
         if(!PizzaMainController.getCurrentOrder().isEmpty()) {
@@ -115,7 +140,9 @@ public class CurrentOrderController {
     }
 
 
-
+    /**
+     * Set the items of the current orders.
+     */
     public void setList(Order order)
     {
         System.out.println(order.toString());
@@ -127,6 +154,9 @@ public class CurrentOrderController {
         //listOfOrder.setItems((FXCollections.observableArrayList(order.toString())));
     }
 
+    /**
+     * Set the subtotal, tax, and price of the text areas.
+     */
     public void setPriceAndTax()
     {
         taxBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getSalesTax()));
@@ -134,7 +164,10 @@ public class CurrentOrderController {
         subtotalBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getTotalWithoutTax()));
 
     }
-
+    /**
+     * Allows the user to go back to the main menu.
+     * @param event When the user clicks on the "Main Menu" button.
+     */
     public void goToMainMenu(ActionEvent event){
 
         Scene scene = PizzaMainApplication.getMainScene();

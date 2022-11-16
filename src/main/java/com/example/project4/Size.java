@@ -10,7 +10,10 @@ public enum Size {
 
 
 
-
+    /**
+     * Get the size of the pizza based off string inputs.
+     * @param s The inputted string
+     */
     public static Size convertSize(String s)
     {
         System.out.println(s);

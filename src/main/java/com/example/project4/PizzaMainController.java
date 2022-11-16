@@ -16,6 +16,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * This class controls the graphical user interface of the Main Pizza Picker Menu; it allows
+ * the user to go into multiple other menus such as Chicago style, New York Style, current order,
+ * and stored orders.
+ * @author Blake Bodajlo, Stanley Jiang
+ */
 public class PizzaMainController {
 
 
@@ -44,6 +50,9 @@ public class PizzaMainController {
     private Scene scene;
     private Parent root;
 
+    /**
+     * Initialize the database for current order and stored order.
+     */
     @FXML
     public void initialize() throws IOException {
         storedOrder = new StoreOrders();
@@ -51,7 +60,10 @@ public class PizzaMainController {
 
     }
 
-
+    /**
+     * Open the Chicago style menu.
+     * @param event When the user clicks on the Chicago Menu image.
+     */
     public void OpenChicagoPage(MouseEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("chicagoPizza-view.fxml")));
         root = loader.load();
@@ -69,6 +81,10 @@ public class PizzaMainController {
 
 
     }
+    /**
+     * Open the New York style menu.
+     * @param event When the user clicks on the New York Menu image.
+     */
     public void OpenNYPage(MouseEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("newYorkPizza-view.fxml")));
         root = loader.load();
@@ -80,6 +96,10 @@ public class PizzaMainController {
 
     }
 
+    /**
+     * Open the current order menu.
+     * @param event When the user clicks on the Current order image.
+     */
     public void OpenOrderPage(MouseEvent event) throws IOException{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("currentOrder-view.fxml")));
@@ -99,6 +119,10 @@ public class PizzaMainController {
 
     }
 
+    /**
+     * Open the Stored Orders menu.
+     * @param event When the user clicks on the Stored Orders image.
+     */
     public void OpenStoredOrderPage(MouseEvent event) throws IOException{
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(("storeOrder-view.fxml")));
@@ -117,19 +141,35 @@ public class PizzaMainController {
 
     }
 
+    /**
+     * Get the current order.
+     * @return the current order
+     */
     public static Order getCurrentOrder() {
         return currentOrder;
     }
 
+    /**
+     * Clear the order.
+     * @return the cleared orders
+     */
     public static void clearOrder()
     {
         currentOrder = new Order(storedOrder.getNextOrderNumber());
     }
 
+    /**
+     * Get the stored orders.
+     * @return the stored orders
+     */
     public static StoreOrders getStoredOrder(){
         return storedOrder;
     }
 
+    /**
+     * Close the application.
+     * @param event When the user clicks on the exits button
+     */
     public void CloseApplication(MouseEvent event) throws IOException{
 
         Platform.exit();

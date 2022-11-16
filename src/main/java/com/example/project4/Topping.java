@@ -1,7 +1,7 @@
 package com.example.project4;
 
 /**
- * Enum to hold all of the possible pizza toppings
+ * Enum to hold all the possible pizza toppings
  */
 public enum Topping {
     Pepperoni,

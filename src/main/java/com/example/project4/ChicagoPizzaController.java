@@ -13,7 +13,14 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Optional;
 
-
+/**
+ * This class controls the graphical user interface of the Chicago Pizza Menu.
+ * Allowing the user to select the desired pizza types; types featuring BBQChicken,
+ * Deluxe, and Meatzza. Custom pizzas can also be built with all topping selectable.
+ * Price changes dynamically upon selection and all confirmed orders will be inserted to
+ * the current order menu.
+ * @author Blake Bodajlo, Stanley Jiang
+ */
 public class ChicagoPizzaController {
 
 
@@ -63,7 +70,10 @@ public class ChicagoPizzaController {
     private PizzaFactory chicagoPizzaBuilder;
 
 
-
+    /**
+     * This initializes the default view of the Chicago Pizza Menu,
+     * which being Pizza Type: Deluxe, Crust: Deep_Dish, and Size: small.
+     */
     public void initialize(){
 
         System.out.println("here");
@@ -88,6 +98,11 @@ public class ChicagoPizzaController {
 
     }
 
+    /**
+     * Dynamically changes the displayed pizza image,
+     * toppings, price, and crust upon the selection of the pizza types.
+     * @param action When the user selects the combo box.
+     */
     @FXML
     public void updateCrustAndPic(ActionEvent action) throws IOException{
 
@@ -136,7 +151,10 @@ public class ChicagoPizzaController {
 
     }
 
-
+    /**
+     * This method handles the topping if the current pizza is an instance
+     * BuildYourOwn.
+     */
     public void handleToppingsList()
     {
         if(!(currentPizza instanceof BuildYourOwn)) {
@@ -155,7 +173,12 @@ public class ChicagoPizzaController {
 
 
     }
-
+    /**
+     * Allows the addition of different topping for a custom pizza to add topping list
+     * and update the price dynamically for each topping added.
+     * The maximum topping allowed for a pizza is 7.
+     * @param event When the user clicks on the right arrow button.
+     */
     @FXML
     public void addToppingToPizza(MouseEvent event) throws IOException
     {
@@ -190,7 +213,11 @@ public class ChicagoPizzaController {
 
 
 
-
+    /**
+     * Allows the removal of different topping for a custom pizza and update
+     * the price dynamically for each topping removed.
+     * @param event When the user clicks on the left arrow button.
+     */
     @FXML
     public void removeToppingFromPizza(MouseEvent event) throws IOException
     {
@@ -213,7 +240,11 @@ public class ChicagoPizzaController {
         }
     }
 
-
+    /**
+     * Set the price of the pizza depending on the selected sizes.
+     * Size being small, medium, or large.
+     * @param event When the user clicks on the radio button.
+     */
     public void updateSizePrice(ActionEvent event)
     {
 
@@ -231,12 +262,20 @@ public class ChicagoPizzaController {
 
     }
 
+    /**
+     * Update the price of text area to the current pizza.
+     */
     public void updatePrice()
     {
         priceLabel.setText(String.valueOf(currentPizza.price()));
 
     }
 
+    /**
+     * Add order to the current order menu, when the user clicks the button
+     * an alert will pop up that allows the user to confirm or cancel their order.
+     * @param event When the user clicks on the "add to order" button.
+     */
     public void addOrder(MouseEvent event) throws IOException{
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -253,7 +292,10 @@ public class ChicagoPizzaController {
         //System.out.println(CurrentOrderController.getCurrentOrder().toString());
     }
 
-
+    /**
+     * Allows the user to go back to the main menu from Chicago pizza menu.
+     * @param event When the user clicks on the "Main Menu" button.
+     */
     public void backToMenu(MouseEvent event)
     {
         Scene scene = PizzaMainApplication.getMainScene();

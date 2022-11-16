@@ -105,6 +105,10 @@ public class StoreOrders implements Customizable{
         }
     }
 
+    /**
+     * Get the order list
+     * @return The list
+     */
     public ArrayList<Order> getOrderList(){
         return orderList;
     }
