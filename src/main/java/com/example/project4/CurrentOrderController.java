@@ -7,13 +7,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class CurrentOrderController {
 
@@ -54,6 +57,9 @@ public class CurrentOrderController {
         }
         catch(NullPointerException | IndexOutOfBoundsException e)
         {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Order is Empty!",
+                    ButtonType.CLOSE);
+            alert.show();
             return;
         }
     //listOfOrder.getItems().add(currentOrder.getPizzaList().get(0));
@@ -63,18 +69,42 @@ public class CurrentOrderController {
 
     @FXML
     public void clearOrder(MouseEvent event) throws IOException{
-        PizzaMainController.clearOrder();
-        listOfOrder.getItems().clear();
+        if(!PizzaMainController.getCurrentOrder().isEmpty()) {
+            PizzaMainController.clearOrder();
+            listOfOrder.getItems().clear();
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Order is Empty!",
+                    ButtonType.CLOSE);
+            alert.show();
+        }
 
     }
     @FXML
     public void placeOrder(MouseEvent event) throws IOException{
         if(!PizzaMainController.getCurrentOrder().isEmpty()) {
-            PizzaMainController.getStoredOrder().add(PizzaMainController.getCurrentOrder());
-            PizzaMainController.clearOrder();
-            listOfOrder.getItems().clear();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm placing order",
+                    ButtonType.OK, ButtonType.CANCEL);
+            Optional<ButtonType> choice = alert.showAndWait();
+
+            if(choice.get() == ButtonType.OK) {
+                PizzaMainController.getStoredOrder().add(PizzaMainController.getCurrentOrder());
+                PizzaMainController.clearOrder();
+                listOfOrder.getItems().clear();
+            }
+            else{
+                alert.close();
+            }
+
         }
-        System.out.println(PizzaMainController.getStoredOrder().toString());
+        else
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Order is Empty!",
+                    ButtonType.CLOSE);
+            alert.show();
+        }
+        //System.out.println(PizzaMainController.getStoredOrder().toString());
     }
 
 

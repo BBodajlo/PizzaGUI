@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Optional;
 
 
 public class ChicagoPizzaController {
@@ -161,6 +162,9 @@ public class ChicagoPizzaController {
         if(currentPizza instanceof BuildYourOwn) {
             if (currentPizza.getToppings().size() >= 7) {
                 toppingsList.setEditable(false);
+                Alert alert = new Alert(Alert.AlertType.ERROR,
+                        "Exceeded topping limit!",
+                        ButtonType.OK);
             }
             Topping toppingToAdd;
             if (currentPizza.getToppings().size() < 7) {
@@ -234,8 +238,17 @@ public class ChicagoPizzaController {
 
     public void addOrder(MouseEvent event) throws IOException{
 
-        PizzaMainController.getCurrentOrder().add(currentPizza);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Add\n" + currentPizza.toString() + "to the order?",
+                ButtonType.OK, ButtonType.CANCEL);
+        Optional<ButtonType> choice = alert.showAndWait();
 
+        if(choice.get() == ButtonType.OK) {
+            PizzaMainController.getCurrentOrder().add(currentPizza);
+        }
+        else {
+            alert.close();
+        }
         //System.out.println(CurrentOrderController.getCurrentOrder().toString());
     }
 

@@ -3,9 +3,15 @@ package com.example.project4;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.*;
 
 public class StoreOrderController {
 
@@ -35,17 +41,44 @@ public class StoreOrderController {
     }
 
     public void removeOrder(MouseEvent event){
-        Order orderToRemove =
-                PizzaMainController.getStoredOrder().getOrderList().get(storedOrderList.getSelectionModel().getSelectedIndex());
-        storedOrderList.getItems().remove(storedOrderList.getSelectionModel().getSelectedIndex());
-        PizzaMainController.getStoredOrder().remove(orderToRemove);
-        PizzaMainController.getCurrentOrder().setOrderNumber(PizzaMainController.getStoredOrder().getNextOrderNumber());
-        storedOrderList.refresh();
-
+        try {
+            Order orderToRemove =
+                    PizzaMainController.getStoredOrder().getOrderList().get(storedOrderList.getSelectionModel().getSelectedIndex());
+            storedOrderList.getItems().remove(storedOrderList.getSelectionModel().getSelectedIndex());
+            PizzaMainController.getStoredOrder().remove(orderToRemove);
+            PizzaMainController.getCurrentOrder().setOrderNumber(PizzaMainController.getStoredOrder().getNextOrderNumber());
+            storedOrderList.refresh();
+        }
+        catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Stored Order is Empty!",
+                    ButtonType.CLOSE);
+            alert.show();
+            return;
+        }
 
     }
 
-    public void exportOrder(MouseEvent event){
+    public void exportOrder(MouseEvent event) throws IOException {
+
+       FileChooser file = new FileChooser();
+        file.setTitle("Select File");
+        file.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File sourceFile = file.showOpenDialog(stage);
+       // File f = new File("StoredOrder.txt");
+        try{
+            PrintWriter pw = new PrintWriter(sourceFile);
+            System.out.println(PizzaMainController.getStoredOrder().toString());
+            pw.print(PizzaMainController.getStoredOrder().toString());
+            storedOrderList.getItems().clear();
+            pw.close();
+        }
+        catch(Exception e)
+        {
+            return;
+        }
 
 
     }

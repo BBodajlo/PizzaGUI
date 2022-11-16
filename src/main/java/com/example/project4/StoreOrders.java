@@ -38,7 +38,7 @@ public class StoreOrders implements Customizable{
         orderListMessage = "";
         for(Order o : orderList)
         {
-            orderListMessage += "Order #" + o.getOrderNumber() + "\n";
+            //orderListMessage += "Order #" + o.getOrderNumber() + "\n";
             orderListMessage += o.toString();
         }
         return orderListMessage;
