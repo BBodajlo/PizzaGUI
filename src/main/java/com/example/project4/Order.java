@@ -51,7 +51,6 @@ public class Order implements Customizable{
                 }
                 orderMessage += "Price: " + p.price() + "\n";
             }
-            orderMessage += "Sales Tax: " + this.getSalesTax() + "\n";
             orderMessage += "Total: " + this.getTotal() + "\n";
         }
 
@@ -133,7 +132,7 @@ public class Order implements Customizable{
         tax = Double.parseDouble(price);
         return tax;
     }
-    private double getTotalWithoutTax()
+    public double getTotalWithoutTax()
     {
         double total = 0;
         for(Pizza p: PizzaList)

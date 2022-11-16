@@ -39,6 +39,9 @@ public class CurrentOrderController {
     @FXML
     private TextField priceBox;
 
+    @FXML
+    private TextField subtotalBox;
+
     public void initialize()
     {
 
@@ -128,6 +131,8 @@ public class CurrentOrderController {
     {
         taxBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getSalesTax()));
         priceBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getTotal()));
+        subtotalBox.setText(String.valueOf(PizzaMainController.getCurrentOrder().getTotalWithoutTax()));
+
     }
 
     public void goToMainMenu(ActionEvent event){
