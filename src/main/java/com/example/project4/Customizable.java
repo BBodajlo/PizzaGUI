@@ -6,6 +6,14 @@ package com.example.project4;
  * @author Blake Bodajlo, Stanley Jiang
  */
 public interface Customizable<E> {
+    /**
+     * Add an object
+     * @param obj The object being added
+     */
     boolean add(Object obj);
+    /**
+     * Remove an object
+     * @param obj The object being removed
+     */
     boolean remove(Object obj);
 }

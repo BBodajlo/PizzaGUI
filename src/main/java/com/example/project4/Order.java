@@ -115,16 +115,26 @@ public class Order implements Customizable{
         return orderNumber;
     }
 
+    /**
+     * Gets the pizza list
+     * @return List of pizza
+     */
     public ArrayList<Pizza> getPizzaList()
     {
         return PizzaList;
     }
-
+    /**
+     * Check if the pizza list is empty
+     * @return Returns True if the pizza list is empty, otherwise false
+     */
     public boolean isEmpty()
     {
         return PizzaList.isEmpty();
     }
-
+    /**
+     * Get the sales tax of the items
+     * @return The sales tax
+     */
     public double getSalesTax()
     {
         double tax = this.getTotalWithoutTax()*SALES_TAX;
@@ -132,6 +142,10 @@ public class Order implements Customizable{
         tax = Double.parseDouble(price);
         return tax;
     }
+    /**
+     * Get the total of the items without tax
+     * @return The total without tax
+     */
     public double getTotalWithoutTax()
     {
         double total = 0;
@@ -143,6 +157,10 @@ public class Order implements Customizable{
         total = Double.parseDouble(price);
         return total;
     }
+    /**
+     * Get the total of the items
+     * @return The total
+     */
     public double getTotal()
     {
         double total = getSalesTax() + getTotalWithoutTax();
