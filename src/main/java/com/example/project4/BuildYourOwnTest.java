@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 // JUnit test class for the price() method in BuildYourOwn Class.
-// Ensure the price() method performs properly with different numbers of toppings and different sizes.
+// Ensures the price() method performs properly with different numbers of toppings and different sizes.
 // Prices of a build your own pizza are Small: $8.99, Medium: $ 10.99, Large: $12.99;
 // Adding $1.59 for each additional topping.
 // @author Blake Bodajlo, Stanley Jiang
