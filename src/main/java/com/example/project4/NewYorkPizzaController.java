@@ -75,7 +75,6 @@ public class NewYorkPizzaController {
      * which being Pizza Type: Deluxe, Crust: Brooklyn, and Size: small.
      */
     public void initialize(){
-        System.out.println("here");
         typeComboBox.setItems(FXCollections.observableArrayList(PizzaType.values()));
         typeComboBox.getSelectionModel().select(0);
         newYorkPizzaBuilder = new NYPizza();
@@ -88,7 +87,6 @@ public class NewYorkPizzaController {
         pizzaPicture = new Image(file.toURI().toString());
         newYorkPizzaPicture.setImage(pizzaPicture);
         updatePrice();
-        System.out.println(currentPizza.getToppings().size());
         handleToppingsList();
         StoreOrderController.initializeStoreOrder();
         //
@@ -144,7 +142,6 @@ public class NewYorkPizzaController {
             handleToppingsList();
 
         }
-        System.out.println(currentPizza.price());
         updatePrice();
 
 
@@ -182,7 +179,6 @@ public class NewYorkPizzaController {
     @FXML
     public void addToppingToPizza(MouseEvent event) throws IOException
     {
-        System.out.println(currentPizza.getToppings().size());
         if(currentPizza instanceof BuildYourOwn) {
             if (currentPizza.getToppings().size() >= 7) {
                 toppingsList.setEditable(false);

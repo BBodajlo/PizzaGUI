@@ -91,7 +91,6 @@ public class StoreOrderController {
        // File f = new File("StoredOrder.txt");
         try{
             PrintWriter pw = new PrintWriter(sourceFile);
-            System.out.println(PizzaMainController.getStoredOrder().toString());
             pw.print(PizzaMainController.getStoredOrder().toString());
             storedOrderList.getItems().clear();
             pw.close();
@@ -110,7 +109,6 @@ public class StoreOrderController {
      */
     public void setList(StoreOrders orders)
     {
-        System.out.println(orders.toString());
         for(Order o : orders.getOrderList())
         {
             storedOrderList.getItems().add(o.toString());

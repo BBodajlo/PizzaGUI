@@ -145,7 +145,6 @@ public class CurrentOrderController {
      */
     public void setList(Order order)
     {
-        System.out.println(order.toString());
         for(Pizza p : order.getPizzaList())
         {
 
