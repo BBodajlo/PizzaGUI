@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Optional;
 
@@ -105,39 +106,37 @@ public class NewYorkPizzaController {
 
         if(typeComboBox.getValue().equals(PizzaType.Meatzza))
         {
-            crustType.setText(Crust.Stuffed.toString());
             file = new File("src/main/resources/com/example/project4/MeatNY.jpg");
             newYorkPizzaPicture.setImage(new Image(file.toURI().toString()));
             currentPizza = newYorkPizzaBuilder.createMeatzza();
+            crustType.setText(currentPizza.getCrust().toString());
             updateSizePrice(action);
             handleToppingsList();
         }
         else if(typeComboBox.getValue().equals(PizzaType.BBQChicken))
         {
-            crustType.setText(Crust.Deep_Dish.toString());
             file = new File("src/main/resources/com/example/project4/ChickenNY.jpg");
             newYorkPizzaPicture.setImage(new Image(file.toURI().toString()));
-            crustType.setText(Crust.Pan.toString());
             currentPizza = newYorkPizzaBuilder.createBBQChicken();
+            crustType.setText(currentPizza.getCrust().toString());
             updateSizePrice(action);
             handleToppingsList();
         }
         else if(typeComboBox.getValue().equals(PizzaType.BuildYouOwn))
         {
-            crustType.setText(Crust.Pan.toString());
-            crustType.setText(Crust.Deep_Dish.toString());
             file = new File("src/main/resources/com/example/project4/BYONY.jpg");
             newYorkPizzaPicture.setImage(new Image(file.toURI().toString()));
             currentPizza = newYorkPizzaBuilder.createBuildYourOwn();
+            crustType.setText(currentPizza.getCrust().toString());
             updateSizePrice(action);
             handleToppingsList();
         }
         else if(typeComboBox.getValue().equals(PizzaType.Deluxe))
         {
-            crustType.setText(Crust.Deep_Dish.toString());
             file = new File("src/main/resources/com/example/project4/DeluxeNY.jpg");
             newYorkPizzaPicture.setImage(new Image(file.toURI().toString()));
             currentPizza = newYorkPizzaBuilder.createDeluxe();
+            crustType.setText(currentPizza.getCrust().toString());
             updateSizePrice(action);
             handleToppingsList();
 
@@ -273,7 +272,9 @@ public class NewYorkPizzaController {
      * @param event When the user clicks on the "add to order" button.
      */
     public void addOrder(MouseEvent event) throws IOException{
-
+        ArrayList<Topping> tempToppings = currentPizza.getToppings();
+        Size tempSize = currentPizza.getSize();
+        Crust tempCrust = currentPizza.getCrust();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
                 "Add\n" + currentPizza.toString() + "to the order?",
                 ButtonType.OK, ButtonType.CANCEL);
@@ -284,6 +285,34 @@ public class NewYorkPizzaController {
         }
         else {
             alert.close();
+        }
+        //refreshes pizza object to a new memory location
+        //without it, adding a pizza to an order without switching type results in
+        //the same object being added each time; only caused issues with buildyourown
+        //but may as well have each pizza be a unique object
+        if(currentPizza instanceof BuildYourOwn) {
+            currentPizza = newYorkPizzaBuilder.createBuildYourOwn();
+            currentPizza.setSize(tempSize);
+            currentPizza.setCrust(tempCrust);
+            currentPizza.initializeToppings();
+            for (Topping t : tempToppings) {
+                currentPizza.add(t);
+            }
+        }
+        else if( currentPizza instanceof Meatzza)
+        {
+            currentPizza = newYorkPizzaBuilder.createMeatzza();
+            currentPizza.setSize(tempSize);
+        }
+        else if( currentPizza instanceof BBQChicken)
+        {
+            currentPizza = newYorkPizzaBuilder.createBBQChicken();
+            currentPizza.setSize(tempSize);
+        }
+        else if( currentPizza instanceof Deluxe)
+        {
+            currentPizza = newYorkPizzaBuilder.createDeluxe();
+            currentPizza.setSize(tempSize);
         }
 
         //System.out.println(CurrentOrderController.getCurrentOrder().toString());

@@ -126,7 +126,7 @@
                                         <Insets right="100.0" />
                                     </HBox.margin>
                                 </Label>
-                                <TextField fx:id="priceLabel" />
+                                <TextField fx:id="priceLabel" editable="false" />
                             </children>
                         </HBox>
                     </children>

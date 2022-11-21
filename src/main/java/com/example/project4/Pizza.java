@@ -55,12 +55,17 @@ public abstract class Pizza implements Customizable<Topping> {
     public String toString()
     {
         String pizza = "";
-        pizza+= String.format("%s: %s, %s, Toppings: ",this.getClass().getSimpleName(),
+        pizza+= String.format("%s: %s, %s,",this.getClass().getSimpleName(),
                 this.getCrust(),
                 this.getSize());
-        for(Topping t : this.getToppings())
-        {
-            pizza += t + ", ";
+        if(!this.getToppings().isEmpty()) {
+            pizza += " Toppings: ";
+            for (Topping t : this.getToppings()) {
+                pizza += t + ", ";
+            }
+        }
+        else {
+            pizza+=" No Toppings, ";
         }
         pizza += "Price: " + this.price() + "\n";
 

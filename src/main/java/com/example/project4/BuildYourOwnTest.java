@@ -27,7 +27,7 @@ public class BuildYourOwnTest {
             PizzaFactory pizzaFactory = new NYPizza();
             Pizza custom = pizzaFactory.createBuildYourOwn();
             //Create a small size build your own pizza without any toppings
-            custom.setSize(Size.Medium);
+            custom.setSize(Size.Small);
             //Small size build your own pizza is $8.99
             assertEquals(8.99, custom.price(), 0.1);
         }
@@ -37,7 +37,7 @@ public class BuildYourOwnTest {
             PizzaFactory pizzaFactory = new NYPizza();
             Pizza custom = pizzaFactory.createBuildYourOwn();
             //Create a large size build your own pizza without any toppings
-            custom.setSize(Size.Medium);
+            custom.setSize(Size.Large);
             //Large size build your own pizza is $12.99
             assertEquals(12.99, custom.price(), 0.1);
         }
