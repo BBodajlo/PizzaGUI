@@ -32,27 +32,6 @@ public class PizzaMainApplication extends Application {
         stage.show();
 
 
-        chicagoView = new Stage();
-        fxmlLoader = new FXMLLoader(PizzaMainApplication.class.getResource(
-                "chicagoPizza-view.fxml"));
-        Scene sceneChicago = new Scene(fxmlLoader.load(), 1000, 1000);
-        chicagoView.setTitle("Chicago Picker");
-        chicagoView.setScene(sceneChicago);
-
-        newYorkView = new Stage();
-        fxmlLoader = new FXMLLoader(PizzaMainApplication.class.getResource(
-                "newYorkPizza-view.fxml"));
-        Scene sceneNewYork = new Scene(fxmlLoader.load(), 1000, 1000);
-        newYorkView.setTitle("New York Picker");
-        newYorkView.setScene(sceneNewYork);
-
-        /*currentOrderView = new Stage();
-        fxmlLoader = new FXMLLoader(PizzaMainApplication.class.getResource(
-                "currentOrder-view.fxml"));
-        Scene sceneCurrentOrder = new Scene(fxmlLoader.load(), 1000, 1000);
-        currentOrderView.setTitle("Current Order");
-        currentOrderView.setScene(sceneCurrentOrder);*/
-
     }
 
 
@@ -61,20 +40,6 @@ public class PizzaMainApplication extends Application {
         return  mainView;
     }
 
-    public static Stage getChicagoView()
-    {
-        return chicagoView;
-    }
-
-    public static Stage getNewYorkView()
-    {
-        return newYorkView;
-    }
-
-    public static Stage getCurrentOrderView()
-    {
-        return currentOrderView;
-    }
 
     public static Scene getMainScene(){
         return mainScene;
